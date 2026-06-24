@@ -21,3 +21,8 @@ npm run docs:preview
 默认使用 `.github/workflows/deploy.yml` 构建并发布 `docs/.vitepress/dist`。
 
 如果仓库地址是 `https://github.com/<owner>/<repo>`，请把 `docs/.vitepress/config.ts` 中的 `base` 改成 `/<repo>/`。
+
+## GitHub Pages 配置办法
+
+Settings -> Pages
+Source: GitHub Actions
