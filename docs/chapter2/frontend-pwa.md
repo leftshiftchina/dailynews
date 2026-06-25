@@ -1,70 +1,79 @@
-# 第三章 前端与 PWA
+# 静态站点结构
 
 ## 技术选型
 
-前端建议使用：
+当前站点只保留静态内容发布能力，技术栈非常轻：
 
-- Vite
-- React
-- TypeScript
-- 普通 CSS 或 CSS Modules
+- VitePress：把 Markdown 构建成静态站点。
+- Markdown：编写项目说明、教程和 Daily 内容。
+- GitHub Actions：自动构建。
+- GitHub Pages：托管构建产物。
 
-如果只是展示静态内容，纯 HTML/CSS/JavaScript 也能实现。但当你需要历史列表、详情页、PWA 状态、通知订阅和离线缓存时，组件化工程会更容易维护。
+不需要后端服务、数据库、接口网关或独立前端应用。
 
-## 页面结构
+## 目录结构
 
 ```text
-web/
-  src/
-    api/
-      news.ts
-    components/
-      NavBar.tsx
-    pages/
-      TodayPage.tsx
-      HistoryPage.tsx
-      DetailPage.tsx
-      SettingsPage.tsx
-    styles/
-      base.css
+docs/
+  index.md
+  guide/
+    overview.md
+    getting-started.md
+    build-your-own.md
+  chapter1/
+    product-shape.md
+  chapter2/
+    frontend-pwa.md
+  daily/
+    2026-06-23.md
+  deploy/
+    github-pages.md
+  public/
+    favicon.svg
+  .vitepress/
+    config.ts
+    theme/
 ```
 
-## 移动端阅读体验
+## 路由规则
 
-阅读体验优先级高于装饰感。建议：
+VitePress 会根据 Markdown 文件路径生成页面路由：
 
-- 主体内容保持单列。
-- 段落间距略大于普通后台系统。
-- 不使用过多卡片嵌套。
-- 底部导航固定今日、历史、设置三个入口。
-- 错误、空状态和加载状态都需要明确。
-
-## PWA 基础能力
-
-PWA 第一阶段需要：
-
-- `manifest.webmanifest`
-- Service Worker
-- 应用图标
-- HTTPS 访问
-- 基础缓存策略
-
-缓存策略建议：
-
-| 资源 | 策略 |
+| 文件 | 页面 |
 | --- | --- |
-| HTML/JS/CSS | Cache First，并通过版本更新 |
-| 今日新闻 API | Network First，失败时读取最近缓存 |
-| 历史列表 API | Network First |
-| 图标和字体 | Cache First |
+| `docs/index.md` | `/` |
+| `docs/guide/overview.md` | `/guide/overview` |
+| `docs/daily/2026-06-23.md` | `/daily/2026-06-23` |
+| `docs/deploy/github-pages.md` | `/deploy/github-pages` |
 
-## 通知提醒
+因为当前开启了 `cleanUrls: true`，线上地址会隐藏 `.html` 后缀。
 
-每日提醒建议放在 PWA 稳定之后再做。原因是 Web Push 需要浏览器支持、用户授权、VAPID 密钥和后端订阅存储。
+## 导航配置
 
-交互上应做能力检测：
+站点导航集中在：
 
 ```text
-当前环境支持通知 -> 显示“开启每日提醒”
-当前环境不支持通知 -> 显示“添加到主屏幕后可开启提醒”
+docs/.vitepress/config.ts
 ```
+
+常用配置包括：
+
+| 配置 | 作用 |
+| --- | --- |
+| `title` | 浏览器标题 |
+| `description` | 站点描述 |
+| `base` | GitHub Pages 仓库名前缀 |
+| `themeConfig.nav` | 顶部导航 |
+| `themeConfig.sidebar` | 左侧目录 |
+
+新增页面后，记得把它加入 `sidebar` 或首页导航表中，否则用户只能通过直接链接或搜索访问。
+
+## 资源管理
+
+静态资源放在：
+
+```text
+docs/public/
+```
+
+例如 `docs/public/favicon.svg` 会在站点中以 `/favicon.svg` 访问。部署到 GitHub Pages 仓库站点时，VitePress 会结合 `base` 自动处理最终路径。

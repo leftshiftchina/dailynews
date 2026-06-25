@@ -30,7 +30,7 @@ _sfc_main$14.setup = (props, ctx) => {
 function deserializeFunctions(r) {
   return Array.isArray(r) ? r.map(deserializeFunctions) : typeof r == "object" && r !== null ? Object.keys(r).reduce((t, n) => (t[n] = deserializeFunctions(r[n]), t), {}) : typeof r == "string" && r.startsWith("_vp-fn_") ? new Function(`return ${r.slice(7)}`)() : r;
 }
-const siteData = deserializeFunctions(JSON.parse('{"lang":"zh-CN","dir":"ltr","title":"每日新技术推送小博客","description":"基于 Coze 工作流的每日技术资讯文档与实现指南","base":"/news-new/","head":[],"router":{"prefetchLinks":true},"appearance":true,"themeConfig":{"logo":"/favicon.svg","siteTitle":"Daily Tech News","nav":[{"text":"首页","link":"/"},{"text":"指南","link":"/guide/overview"},{"text":"API","link":"/api/news"},{"text":"部署","link":"/deploy/github-pages"},{"text":"GitHub","link":"https://github.com/"}],"sidebar":[{"text":"项目导读","items":[{"text":"项目介绍","link":"/"},{"text":"整体概览","link":"/guide/overview"},{"text":"快速开始","link":"/guide/getting-started"}]},{"text":"AI 日报","items":[{"text":"2026-06-23","link":"/daily/2026-06-23"}]},{"text":"第一部分：产品与内容链路","items":[{"text":"第一章 产品形态","link":"/chapter1/product-shape"},{"text":"第二章 Coze 内容流","link":"/chapter1/coze-flow"}]},{"text":"第二部分：工程实现","items":[{"text":"第三章 前端与 PWA","link":"/chapter2/frontend-pwa"},{"text":"第四章 后端与存储","link":"/chapter2/backend-storage"}]},{"text":"接口与部署","items":[{"text":"新闻 API","link":"/api/news"},{"text":"GitHub Pages","link":"/deploy/github-pages"}]}],"outline":{"level":[2,3],"label":"本页目录"},"docFooter":{"prev":"上一页","next":"下一页"},"lastUpdated":{"text":"最后更新","formatOptions":{"dateStyle":"medium","timeStyle":"short"}},"search":{"provider":"local","options":{"translations":{"button":{"buttonText":"搜索文档","buttonAriaLabel":"搜索文档"},"modal":{"noResultsText":"没有找到相关内容","resetButtonTitle":"清除搜索","footer":{"selectText":"选择","navigateText":"切换","closeText":"关闭"}}}}},"socialLinks":[{"icon":"github","link":"https://github.com/"}]},"locales":{},"scrollOffset":134,"cleanUrls":true}'));
+const siteData = deserializeFunctions(JSON.parse('{"lang":"zh-CN","dir":"ltr","title":"AI 前沿科技 Daily","description":"基于 VitePress 与 GitHub Pages 的 AI 前沿科技内容分享站","base":"/dailynews/","head":[],"router":{"prefetchLinks":true},"appearance":true,"themeConfig":{"logo":"/favicon.svg","siteTitle":"AI Frontier Daily","nav":[{"text":"首页","link":"/"},{"text":"指南","link":"/guide/overview"},{"text":"Daily","link":"/daily/2026-06-23"},{"text":"部署","link":"/deploy/github-pages"},{"text":"GitHub","link":"https://github.com/"}],"sidebar":[{"text":"项目导读","items":[{"text":"项目介绍","link":"/"},{"text":"整体概览","link":"/guide/overview"},{"text":"快速开始","link":"/guide/getting-started"},{"text":"自己搭建教程","link":"/guide/build-your-own"}]},{"text":"AI 日报","items":[{"text":"2026-06-23","link":"/daily/2026-06-23"}]},{"text":"内容建设","items":[{"text":"内容形态","link":"/chapter1/product-shape"},{"text":"静态站点结构","link":"/chapter2/frontend-pwa"}]},{"text":"部署","items":[{"text":"GitHub Pages","link":"/deploy/github-pages"}]}],"outline":{"level":[2,3],"label":"本页目录"},"docFooter":{"prev":"上一页","next":"下一页"},"lastUpdated":{"text":"最后更新","formatOptions":{"dateStyle":"medium","timeStyle":"short"}},"search":{"provider":"local","options":{"translations":{"button":{"buttonText":"搜索文档","buttonAriaLabel":"搜索文档"},"modal":{"noResultsText":"没有找到相关内容","resetButtonTitle":"清除搜索","footer":{"selectText":"选择","navigateText":"切换","closeText":"关闭"}}}}},"socialLinks":[{"icon":"github","link":"https://github.com/"}]},"locales":{},"scrollOffset":134,"cleanUrls":true}'));
 const __vite_import_meta_env__ = {};
 const EXTERNAL_URL_RE = /^(?:[a-z]+:|\/\/)/i;
 const APPEARANCE_KEY = "vitepress-theme-appearance";
@@ -200,7 +200,7 @@ function pathToFile(path) {
   pagePath = pagePath.replace(/\/$/, "/index");
   {
     if (inBrowser) {
-      const base = "/news-new/";
+      const base = "/dailynews/";
       pagePath = sanitizeFileName(pagePath.slice(base.length).replace(/\//g, "_") || "index") + ".md";
       let pageHash = __VP_HASH_MAP__[pagePath.toLowerCase()];
       if (!pageHash) {
@@ -3102,7 +3102,7 @@ const _sfc_main$s = /* @__PURE__ */ defineComponent({
   __name: "VPNavBarSearch",
   __ssrInlineRender: true,
   setup(__props) {
-    const VPLocalSearchBox = defineAsyncComponent(() => import("./VPLocalSearchBox.CEYY5RWX.js"));
+    const VPLocalSearchBox = defineAsyncComponent(() => import("./VPLocalSearchBox.CZwYvkB9.js"));
     const VPAlgoliaSearchBox = () => null;
     const { theme: theme2 } = useData();
     const loaded = ref(false);

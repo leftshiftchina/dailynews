@@ -1,24 +1,24 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: '每日新技术推送小博客',
-  description: '基于 Coze 工作流的每日技术资讯文档与实现指南',
+  title: 'AI 前沿科技 Daily',
+  description: '基于 VitePress 与 GitHub Pages 的 AI 前沿科技内容分享站',
   base: '/dailynews/',
   lang: 'zh-CN',
   cleanUrls: true,
   lastUpdated: true,
   head: [
     ['meta', { name: 'theme-color', content: '#12a67f' }],
-    ['link', { rel: 'icon', href: '/news-new/favicon.svg', type: 'image/svg+xml' }],
-    ['link', { rel: 'shortcut icon', href: '/news-new/favicon.svg', type: 'image/svg+xml' }]
+    ['link', { rel: 'icon', href: '/dailynews/favicon.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'shortcut icon', href: '/dailynews/favicon.svg', type: 'image/svg+xml' }]
   ],
   themeConfig: {
     logo: '/favicon.svg',
-    siteTitle: 'Daily Tech News',
+    siteTitle: 'AI Frontier Daily',
     nav: [
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/overview' },
-      { text: 'API', link: '/api/news' },
+      { text: 'Daily', link: '/daily/2026-06-23' },
       { text: '部署', link: '/deploy/github-pages' },
       { text: 'GitHub', link: 'https://github.com/' }
     ],
@@ -28,7 +28,8 @@ export default defineConfig({
         items: [
           { text: '项目介绍', link: '/' },
           { text: '整体概览', link: '/guide/overview' },
-          { text: '快速开始', link: '/guide/getting-started' }
+          { text: '快速开始', link: '/guide/getting-started' },
+          { text: '自己搭建教程', link: '/guide/build-your-own' }
         ]
       },
       {
@@ -38,23 +39,15 @@ export default defineConfig({
         ]
       },
       {
-        text: '第一部分：产品与内容链路',
+        text: '内容建设',
         items: [
-          { text: '第一章 产品形态', link: '/chapter1/product-shape' },
-          { text: '第二章 Coze 内容流', link: '/chapter1/coze-flow' }
+          { text: '内容形态', link: '/chapter1/product-shape' },
+          { text: '静态站点结构', link: '/chapter2/frontend-pwa' }
         ]
       },
       {
-        text: '第二部分：工程实现',
+        text: '部署',
         items: [
-          { text: '第三章 前端与 PWA', link: '/chapter2/frontend-pwa' },
-          { text: '第四章 后端与存储', link: '/chapter2/backend-storage' }
-        ]
-      },
-      {
-        text: '接口与部署',
-        items: [
-          { text: '新闻 API', link: '/api/news' },
           { text: 'GitHub Pages', link: '/deploy/github-pages' }
         ]
       }

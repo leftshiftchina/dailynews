@@ -1,23 +1,28 @@
 import { ssrRenderAttrs } from "vue/server-renderer";
 import { useSSRContext } from "vue";
 import { _ as _export_sfc } from "./plugin-vue_export-helper.1tPrXgE0.js";
-const __pageData = JSON.parse('{"title":"第三章 前端与 PWA","description":"","frontmatter":{},"headers":[],"relativePath":"chapter2/frontend-pwa.md","filePath":"chapter2/frontend-pwa.md","lastUpdated":null}');
+const __pageData = JSON.parse('{"title":"静态站点结构","description":"","frontmatter":{},"headers":[],"relativePath":"chapter2/frontend-pwa.md","filePath":"chapter2/frontend-pwa.md","lastUpdated":1782302430000}');
 const _sfc_main = { name: "chapter2/frontend-pwa.md" };
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(_attrs)}><h1 id="第三章-前端与-pwa" tabindex="-1">第三章 前端与 PWA <a class="header-anchor" href="#第三章-前端与-pwa" aria-label="Permalink to &quot;第三章 前端与 PWA&quot;">​</a></h1><h2 id="技术选型" tabindex="-1">技术选型 <a class="header-anchor" href="#技术选型" aria-label="Permalink to &quot;技术选型&quot;">​</a></h2><p>前端建议使用：</p><ul><li>Vite</li><li>React</li><li>TypeScript</li><li>普通 CSS 或 CSS Modules</li></ul><p>如果只是展示静态内容，纯 HTML/CSS/JavaScript 也能实现。但当你需要历史列表、详情页、PWA 状态、通知订阅和离线缓存时，组件化工程会更容易维护。</p><h2 id="页面结构" tabindex="-1">页面结构 <a class="header-anchor" href="#页面结构" aria-label="Permalink to &quot;页面结构&quot;">​</a></h2><div class="language-text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>web/</span></span>
-<span class="line"><span>  src/</span></span>
-<span class="line"><span>    api/</span></span>
-<span class="line"><span>      news.ts</span></span>
-<span class="line"><span>    components/</span></span>
-<span class="line"><span>      NavBar.tsx</span></span>
-<span class="line"><span>    pages/</span></span>
-<span class="line"><span>      TodayPage.tsx</span></span>
-<span class="line"><span>      HistoryPage.tsx</span></span>
-<span class="line"><span>      DetailPage.tsx</span></span>
-<span class="line"><span>      SettingsPage.tsx</span></span>
-<span class="line"><span>    styles/</span></span>
-<span class="line"><span>      base.css</span></span></code></pre></div><h2 id="移动端阅读体验" tabindex="-1">移动端阅读体验 <a class="header-anchor" href="#移动端阅读体验" aria-label="Permalink to &quot;移动端阅读体验&quot;">​</a></h2><p>阅读体验优先级高于装饰感。建议：</p><ul><li>主体内容保持单列。</li><li>段落间距略大于普通后台系统。</li><li>不使用过多卡片嵌套。</li><li>底部导航固定今日、历史、设置三个入口。</li><li>错误、空状态和加载状态都需要明确。</li></ul><h2 id="pwa-基础能力" tabindex="-1">PWA 基础能力 <a class="header-anchor" href="#pwa-基础能力" aria-label="Permalink to &quot;PWA 基础能力&quot;">​</a></h2><p>PWA 第一阶段需要：</p><ul><li><code>manifest.webmanifest</code></li><li>Service Worker</li><li>应用图标</li><li>HTTPS 访问</li><li>基础缓存策略</li></ul><p>缓存策略建议：</p><table tabindex="0"><thead><tr><th>资源</th><th>策略</th></tr></thead><tbody><tr><td>HTML/JS/CSS</td><td>Cache First，并通过版本更新</td></tr><tr><td>今日新闻 API</td><td>Network First，失败时读取最近缓存</td></tr><tr><td>历史列表 API</td><td>Network First</td></tr><tr><td>图标和字体</td><td>Cache First</td></tr></tbody></table><h2 id="通知提醒" tabindex="-1">通知提醒 <a class="header-anchor" href="#通知提醒" aria-label="Permalink to &quot;通知提醒&quot;">​</a></h2><p>每日提醒建议放在 PWA 稳定之后再做。原因是 Web Push 需要浏览器支持、用户授权、VAPID 密钥和后端订阅存储。</p><p>交互上应做能力检测：</p><div class="language-text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>当前环境支持通知 -&gt; 显示“开启每日提醒”</span></span>
-<span class="line"><span>当前环境不支持通知 -&gt; 显示“添加到主屏幕后可开启提醒”</span></span></code></pre></div></div>`);
+  _push(`<div${ssrRenderAttrs(_attrs)}><h1 id="静态站点结构" tabindex="-1">静态站点结构 <a class="header-anchor" href="#静态站点结构" aria-label="Permalink to &quot;静态站点结构&quot;">​</a></h1><h2 id="技术选型" tabindex="-1">技术选型 <a class="header-anchor" href="#技术选型" aria-label="Permalink to &quot;技术选型&quot;">​</a></h2><p>当前站点只保留静态内容发布能力，技术栈非常轻：</p><ul><li>VitePress：把 Markdown 构建成静态站点。</li><li>Markdown：编写项目说明、教程和 Daily 内容。</li><li>GitHub Actions：自动构建。</li><li>GitHub Pages：托管构建产物。</li></ul><p>不需要后端服务、数据库、接口网关或独立前端应用。</p><h2 id="目录结构" tabindex="-1">目录结构 <a class="header-anchor" href="#目录结构" aria-label="Permalink to &quot;目录结构&quot;">​</a></h2><div class="language-text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>docs/</span></span>
+<span class="line"><span>  index.md</span></span>
+<span class="line"><span>  guide/</span></span>
+<span class="line"><span>    overview.md</span></span>
+<span class="line"><span>    getting-started.md</span></span>
+<span class="line"><span>    build-your-own.md</span></span>
+<span class="line"><span>  chapter1/</span></span>
+<span class="line"><span>    product-shape.md</span></span>
+<span class="line"><span>  chapter2/</span></span>
+<span class="line"><span>    frontend-pwa.md</span></span>
+<span class="line"><span>  daily/</span></span>
+<span class="line"><span>    2026-06-23.md</span></span>
+<span class="line"><span>  deploy/</span></span>
+<span class="line"><span>    github-pages.md</span></span>
+<span class="line"><span>  public/</span></span>
+<span class="line"><span>    favicon.svg</span></span>
+<span class="line"><span>  .vitepress/</span></span>
+<span class="line"><span>    config.ts</span></span>
+<span class="line"><span>    theme/</span></span></code></pre></div><h2 id="路由规则" tabindex="-1">路由规则 <a class="header-anchor" href="#路由规则" aria-label="Permalink to &quot;路由规则&quot;">​</a></h2><p>VitePress 会根据 Markdown 文件路径生成页面路由：</p><table tabindex="0"><thead><tr><th>文件</th><th>页面</th></tr></thead><tbody><tr><td><code>docs/index.md</code></td><td><code>/</code></td></tr><tr><td><code>docs/guide/overview.md</code></td><td><code>/guide/overview</code></td></tr><tr><td><code>docs/daily/2026-06-23.md</code></td><td><code>/daily/2026-06-23</code></td></tr><tr><td><code>docs/deploy/github-pages.md</code></td><td><code>/deploy/github-pages</code></td></tr></tbody></table><p>因为当前开启了 <code>cleanUrls: true</code>，线上地址会隐藏 <code>.html</code> 后缀。</p><h2 id="导航配置" tabindex="-1">导航配置 <a class="header-anchor" href="#导航配置" aria-label="Permalink to &quot;导航配置&quot;">​</a></h2><p>站点导航集中在：</p><div class="language-text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>docs/.vitepress/config.ts</span></span></code></pre></div><p>常用配置包括：</p><table tabindex="0"><thead><tr><th>配置</th><th>作用</th></tr></thead><tbody><tr><td><code>title</code></td><td>浏览器标题</td></tr><tr><td><code>description</code></td><td>站点描述</td></tr><tr><td><code>base</code></td><td>GitHub Pages 仓库名前缀</td></tr><tr><td><code>themeConfig.nav</code></td><td>顶部导航</td></tr><tr><td><code>themeConfig.sidebar</code></td><td>左侧目录</td></tr></tbody></table><p>新增页面后，记得把它加入 <code>sidebar</code> 或首页导航表中，否则用户只能通过直接链接或搜索访问。</p><h2 id="资源管理" tabindex="-1">资源管理 <a class="header-anchor" href="#资源管理" aria-label="Permalink to &quot;资源管理&quot;">​</a></h2><p>静态资源放在：</p><div class="language-text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>docs/public/</span></span></code></pre></div><p>例如 <code>docs/public/favicon.svg</code> 会在站点中以 <code>/favicon.svg</code> 访问。部署到 GitHub Pages 仓库站点时，VitePress 会结合 <code>base</code> 自动处理最终路径。</p></div>`);
 }
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {

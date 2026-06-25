@@ -10,7 +10,7 @@
 
 ## 安装依赖
 
-在 `work/news-new` 目录下执行：
+在项目根目录执行：
 
 ```bash
 npm install
@@ -62,8 +62,14 @@ docs/.vitepress/config.ts
 | `themeConfig.nav` | 顶部导航 |
 | `themeConfig.sidebar` | 左侧章节目录 |
 
-如果你的仓库名不是 `news-new`，需要把 `base` 改成你的仓库名：
+如果你的仓库名不是 `dailynews`，需要把 `base` 改成你的仓库名：
 
 ```ts
 base: '/你的仓库名/'
+```
+
+当前仓库默认使用：
+
+```ts
+base: '/dailynews/'
 ```

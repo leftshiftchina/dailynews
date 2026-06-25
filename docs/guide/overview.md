@@ -2,46 +2,51 @@
 
 ## 项目目标
 
-本项目的目标是搭建一个面向移动端阅读的每日技术资讯系统，并配套一个清晰的在线文档站。
+本项目的目标是搭建一个 AI 前沿科技内容分享站，用稳定、低成本、易维护的方式沉淀每日资讯、实现教程、项目说明和部署手册。
 
-第一阶段关注内容链路和阅读体验：
+第一阶段关注静态内容站本身：
 
-- Coze 每天生成一篇技术新闻或技术趋势内容。
-- Coze 通过 HTTP 接口把结构化 JSON 推送到后端。
-- 后端保存每日内容，并提供今日内容和历史内容接口。
-- 前端以移动优先方式展示今日内容、历史列表和详情页。
-- 文档站记录产品设计、接口设计、部署方式和后续迭代计划。
+- 用 Markdown 编写 AI 科技内容和教程。
+- 用 VitePress 生成首页、侧边栏、页内目录和搜索。
+- 用 GitHub Pages 发布静态页面。
+- 保留 `daily` 目录，按日期归档每日内容。
+- 不维护服务端、数据库或特定内容生成平台。
 
 ## 总体架构
 
 ```text
-Coze 定时工作流
+Markdown 内容
   |
-  | HTTP POST /api/news
+  | docs/**/*.md
   v
-Node.js / Express 后端
+VitePress 构建
   |
-  | 保存每日内容
+  | docs/.vitepress/dist
   v
-SQLite 或云数据库
+GitHub Pages 托管
   |
-  | GET /api/news/today
-  | GET /api/news
   v
-移动端 PWA 网页
+公开访问的 AI 前沿科技分享站
 ```
 
 ## 文档站架构
 
 ```text
-news-new/
+dailynews/
   docs/
     index.md
     guide/
+      overview.md
+      getting-started.md
+      build-your-own.md
     chapter1/
+      product-shape.md
     chapter2/
-    api/
+      frontend-pwa.md
+    daily/
+      2026-06-23.md
     deploy/
+      github-pages.md
     .vitepress/
       config.ts
       theme/
@@ -55,7 +60,7 @@ news-new/
 
 VitePress 适合这个场景的原因很直接：
 
-- Markdown 写作成本低，适合持续维护教程和 API 文档。
+- Markdown 写作成本低，适合持续维护日报、教程和项目说明。
 - 自动生成侧边栏、页内目录、搜索、上一页和下一页。
 - 构建结果是静态文件，适合部署到 GitHub Pages。
 - 后续可以继续添加自定义 Vue 组件，承载更丰富的示例。
@@ -69,17 +74,17 @@ VitePress 默认是构建期生成静态页面，因此路由通常是：
 ```text
 /guide/overview
 /chapter1/product-shape
-/api/news
+/daily/2026-06-23
 ```
 
 部署到 GitHub Pages 仓库站点时，还需要带上仓库名前缀，例如：
 
 ```text
-https://<owner>.github.io/news-new/guide/overview
+https://<owner>.github.io/dailynews/guide/overview
 ```
 
 页面内的小标题锚点仍然支持，例如：
 
 ```text
-https://<owner>.github.io/news-new/chapter1/coze-flow#coze-输出建议
+https://<owner>.github.io/dailynews/daily/2026-06-23#ai-技术新闻
 ```

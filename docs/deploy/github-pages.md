@@ -35,19 +35,19 @@ GitHub Actions
 
 ## base 配置
 
-GitHub Pages 仓库站点通常带仓库名前缀。例如仓库名是 `news-new`，最终地址可能是：
+GitHub Pages 仓库站点通常带仓库名前缀。例如仓库名是 `dailynews`，最终地址可能是：
 
 ```text
-https://<owner>.github.io/news-new/
+https://<owner>.github.io/dailynews/
 ```
 
 这时 `docs/.vitepress/config.ts` 需要配置：
 
 ```ts
-base: '/news-new/'
+base: '/dailynews/'
 ```
 
-如果仓库名不是 `news-new`，请同步修改：
+如果仓库名不是 `dailynews`，请同步修改：
 
 ```ts
 base: '/你的仓库名/'

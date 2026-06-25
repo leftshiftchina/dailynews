@@ -1,6 +1,8 @@
-# 每日新技术推送小博客文档站
+# AI 前沿科技 Daily
 
-这是一个基于 VitePress + GitHub Pages 的在线文档站模板，适合承载项目介绍、章节式教程、API 文档和部署说明。
+这是一个基于 VitePress + GitHub Pages 的 AI 前沿科技内容分享站，适合承载项目说明、实现教程、Daily 内容归档和部署手册。
+
+当前项目只保留静态文档能力：内容写在 `docs` 目录下的 Markdown 文件中，通过 GitHub Pages 发布，不包含后端接口、数据库或第三方工作流接入。
 
 ## 本地预览
 
