@@ -84,6 +84,12 @@ export default defineConfig({
         timeStyle: 'short'
       }
     },
+    comments: {
+      repo: 'leftshiftchina/dailynews',
+      repoId: 'R_kgDOTDbQ0A',
+      category: 'Announcements',
+      categoryId: 'DIC_kwDOTDbQ0M4C_2lD'
+    },
     search: {
       provider: 'local',
       options: {

@@ -35,6 +35,28 @@ python scripts/generate_daily.py --collect-only --context-out tmp/daily-context.
 
 如需提升 GitHub API 额度，可设置 `GITHUB_TOKEN` 环境变量。
 
+## 评论区
+
+站点已内置基于 Giscus 的“讨论与提问”评论区，会显示在每篇文档正文底部。
+
+启用步骤：
+
+1. 在 GitHub 仓库 Settings -> General 中开启 Discussions。
+2. 在仓库中安装 Giscus App。
+3. 打开 <https://giscus.app/zh-CN>，选择仓库和 Discussion 分类。
+4. 将生成配置里的 `data-repo-id` 和 `data-category-id` 填入 `docs/.vitepress/config.ts`：
+
+```ts
+comments: {
+  repo: 'leftshiftchina/dailynews',
+  repoId: '你的 repoId',
+  category: 'Announcements',
+  categoryId: '你的 categoryId'
+}
+```
+
+未填写 `repoId` 和 `categoryId` 时，页面会显示待配置提示，不会加载评论脚本。
+
 ## GitHub Pages
 
 默认使用 `.github/workflows/deploy.yml` 构建并发布 `docs/.vitepress/dist`。
