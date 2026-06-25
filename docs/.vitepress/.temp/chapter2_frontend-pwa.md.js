@@ -1,7 +1,7 @@
 import { ssrRenderAttrs } from "vue/server-renderer";
 import { useSSRContext } from "vue";
 import { _ as _export_sfc } from "./plugin-vue_export-helper.1tPrXgE0.js";
-const __pageData = JSON.parse('{"title":"静态站点结构","description":"","frontmatter":{},"headers":[],"relativePath":"chapter2/frontend-pwa.md","filePath":"chapter2/frontend-pwa.md","lastUpdated":1782302430000}');
+const __pageData = JSON.parse('{"title":"静态站点结构","description":"","frontmatter":{},"headers":[],"relativePath":"chapter2/frontend-pwa.md","filePath":"chapter2/frontend-pwa.md","lastUpdated":1782354912000}');
 const _sfc_main = { name: "chapter2/frontend-pwa.md" };
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(_attrs)}><h1 id="静态站点结构" tabindex="-1">静态站点结构 <a class="header-anchor" href="#静态站点结构" aria-label="Permalink to &quot;静态站点结构&quot;">​</a></h1><h2 id="技术选型" tabindex="-1">技术选型 <a class="header-anchor" href="#技术选型" aria-label="Permalink to &quot;技术选型&quot;">​</a></h2><p>当前站点只保留静态内容发布能力，技术栈非常轻：</p><ul><li>VitePress：把 Markdown 构建成静态站点。</li><li>Markdown：编写项目说明、教程和 Daily 内容。</li><li>GitHub Actions：自动构建。</li><li>GitHub Pages：托管构建产物。</li></ul><p>不需要后端服务、数据库、接口网关或独立前端应用。</p><h2 id="目录结构" tabindex="-1">目录结构 <a class="header-anchor" href="#目录结构" aria-label="Permalink to &quot;目录结构&quot;">​</a></h2><div class="language-text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>docs/</span></span>

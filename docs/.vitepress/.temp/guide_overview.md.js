@@ -1,7 +1,7 @@
 import { ssrRenderAttrs } from "vue/server-renderer";
 import { useSSRContext } from "vue";
 import { _ as _export_sfc } from "./plugin-vue_export-helper.1tPrXgE0.js";
-const __pageData = JSON.parse('{"title":"整体概览","description":"","frontmatter":{},"headers":[],"relativePath":"guide/overview.md","filePath":"guide/overview.md","lastUpdated":1782302430000}');
+const __pageData = JSON.parse('{"title":"整体概览","description":"","frontmatter":{},"headers":[],"relativePath":"guide/overview.md","filePath":"guide/overview.md","lastUpdated":1782354912000}');
 const _sfc_main = { name: "guide/overview.md" };
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(_attrs)}><h1 id="整体概览" tabindex="-1">整体概览 <a class="header-anchor" href="#整体概览" aria-label="Permalink to &quot;整体概览&quot;">​</a></h1><h2 id="项目目标" tabindex="-1">项目目标 <a class="header-anchor" href="#项目目标" aria-label="Permalink to &quot;项目目标&quot;">​</a></h2><p>本项目的目标是搭建一个 AI 前沿科技内容分享站，用稳定、低成本、易维护的方式沉淀每日资讯、实现教程、项目说明和部署手册。</p><p>第一阶段关注静态内容站本身：</p><ul><li>用 Markdown 编写 AI 科技内容和教程。</li><li>用 VitePress 生成首页、侧边栏、页内目录和搜索。</li><li>用 GitHub Pages 发布静态页面。</li><li>保留 <code>daily</code> 目录，按日期归档每日内容。</li><li>不维护服务端、数据库或特定内容生成平台。</li></ul><h2 id="总体架构" tabindex="-1">总体架构 <a class="header-anchor" href="#总体架构" aria-label="Permalink to &quot;总体架构&quot;">​</a></h2><div class="language-text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>Markdown 内容</span></span>

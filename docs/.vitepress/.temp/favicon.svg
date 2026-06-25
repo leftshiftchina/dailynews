@@ -1,6 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Daily Tech News">
-  <rect width="64" height="64" rx="16" fill="#0f9f7a"/>
-  <path d="M18 16h28a4 4 0 0 1 4 4v26a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4Z" fill="#fff"/>
-  <path d="M22 24h20M22 32h20M22 40h12" stroke="#0f9f7a" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="44" cy="41" r="5" fill="#2f6fed"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="LeftShift logo">
+  <rect width="512" height="512" fill="#ffd42a"/>
+  <path d="M151 257 307 119c8-7 18 4 12 13l-81 101 155 4c18 1 18 28 0 29l-156 5 82 107c6 9-5 19-13 12L151 257Z" fill="#111217"/>
+  <path d="M151 257c51-31 103-68 155-124" fill="none" stroke="#111217" stroke-width="34" stroke-linecap="round"/>
+  <path d="M151 257c48 28 96 65 151 122" fill="none" stroke="#111217" stroke-width="32" stroke-linecap="round"/>
+  <path d="M165 257c77-5 153-6 229-5" fill="none" stroke="#111217" stroke-width="30" stroke-linecap="round"/>
+  <path d="M151 257c34-40 70-80 112-118" fill="none" stroke="#111217" stroke-width="11" stroke-linecap="round" opacity=".92"/>
+  <path d="M151 257c36 36 75 73 115 116" fill="none" stroke="#111217" stroke-width="10" stroke-linecap="round" opacity=".9"/>
+  <path d="M169 238c53-8 106-10 169-7" fill="none" stroke="#111217" stroke-width="8" stroke-linecap="round" opacity=".85"/>
+  <path d="M174 277c56 4 112 1 177-1" fill="none" stroke="#111217" stroke-width="8" stroke-linecap="round" opacity=".78"/>
+  <path d="M160 247c42-47 86-90 133-130" fill="none" stroke="#111217" stroke-width="5" stroke-linecap="round" opacity=".75"/>
+  <path d="M158 267c43 41 88 83 137 122" fill="none" stroke="#111217" stroke-width="5" stroke-linecap="round" opacity=".75"/>
+  <path d="M138 247 160 225M137 263l26 24M144 253l-18-6M145 262l-19 9" fill="none" stroke="#111217" stroke-width="6" stroke-linecap="round" opacity=".85"/>
+  <path d="M272 126c16-12 27-20 39-26M272 386c17 13 29 22 42 31M359 236c25 0 45 0 66 2M358 270c24-1 44-2 64-2" fill="none" stroke="#111217" stroke-width="4" stroke-linecap="round" opacity=".55"/>
 </svg>
