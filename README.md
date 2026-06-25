@@ -1,4 +1,4 @@
-﻿# AI 前沿科技简报
+# AI 前沿科技简报
 
 这是一个基于 VitePress + GitHub Pages 的 AI 前沿科技内容分享站，适合承载项目说明、实现教程、AI简报归档和部署手册。
 
@@ -20,7 +20,7 @@ npm run docs:preview
 
 ## 生成 AI 简报
 
-脚本会采集 `docs/chapter1/news-sources.md` 中定义的信息源，调用本地 Codex 分析并生成 Markdown 到 `docs/daily/YYYY-MM-DD.md`。
+脚本会采集 `docs/build/news-sources.md` 中定义的信息源，调用本地 Codex 分析并生成 Markdown 到 `docs/daily/YYYY-MM-DD.md`。
 
 ```bash
 python scripts/generate_daily.py

@@ -1,6 +1,6 @@
-﻿# 自己搭建教程
+# 从零搭建同款网站
 
-这篇教程说明如何从零搭建一个类似的 AI 前沿科技内容分享站。最终效果是：用 Markdown 写内容，用 VitePress 生成静态页面，用 GitHub Pages 免费托管。
+这篇教程说明如何从零搭建一个类似本站的网站。核心技术架构是：用 Markdown 写内容，用 VitePress 生成静态页面，用 GitHub Pages 免费托管。
 
 ## 准备环境
 
@@ -8,6 +8,7 @@
 
 - Node.js 18 或更高版本。
 - npm 9 或更高版本。
+- Git，用于将代码克隆到本地。
 - 一个 GitHub 仓库。
 
 ## 初始化项目
@@ -45,13 +46,14 @@ npm install -D vitepress
 ```text
 docs/
   index.md
-  guide/
+  about/
+    index.md
     overview.md
+  build/
     getting-started.md
+    github-pages.md
   daily/
     2026-06-23.md
-  deploy/
-    github-pages.md
   public/
     favicon.svg
   .vitepress/
@@ -76,16 +78,16 @@ export default defineConfig({
     siteTitle: 'AI Frontier Brief',
     nav: [
       { text: '首页', link: '/' },
-      { text: '指南', link: '/guide/overview' },
       { text: 'AI简报', link: '/daily/2026-06-23' },
-      { text: '部署', link: '/deploy/github-pages' }
+      { text: '搭建同款网站', link: '/build/build-your-own' },
+      { text: '部署', link: '/build/github-pages' }
     ],
     sidebar: [
       {
-        text: '项目导读',
+        text: '关于本站',
         items: [
-          { text: '项目介绍', link: '/' },
-          { text: '整体概览', link: '/guide/overview' }
+          { text: '项目介绍', link: '/about/' },
+          { text: '整体概览', link: '/about/overview' }
         ]
       },
       {
@@ -95,9 +97,11 @@ export default defineConfig({
         ]
       },
       {
-        text: '部署',
+        text: '搭建同款网站',
         items: [
-          { text: 'GitHub Pages', link: '/deploy/github-pages' }
+          { text: '快速开始', link: '/build/getting-started' },
+          { text: '从零搭建', link: '/build/build-your-own' },
+          { text: 'GitHub Pages 部署', link: '/build/github-pages' }
         ]
       }
     ],
@@ -125,7 +129,7 @@ hero:
   actions:
     - theme: brand
       text: 开始阅读
-      link: /guide/overview
+      link: /daily/2026-06-23
 
 features:
   - title: Markdown 写作
@@ -159,7 +163,7 @@ features:
 - [来源标题](https://example.com/)
 ```
 
-以后每天新增一个 Markdown 文件，并把它加入 `docs/.vitepress/config.ts` 的 `sidebar`。
+以后每天新增一个 Markdown 文件。如果你采用本站这样的动态侧边栏写法，只要文件名符合 `YYYY-MM-DD.md`，它就会自动出现在 AI简报栏目中。
 
 ## 本地预览
 

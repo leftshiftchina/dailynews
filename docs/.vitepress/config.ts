@@ -35,19 +35,17 @@ export default defineConfig({
     siteTitle: 'AI Frontier Brief',
     nav: [
       { text: '首页', link: '/' },
-      { text: '指南', link: '/guide/overview' },
       { text: 'AI简报', link: latestDailyLink },
-      { text: '部署', link: '/deploy/github-pages' },
+      { text: '搭建同款网站', link: '/build/build-your-own' },
+      { text: '部署', link: '/build/github-pages' },
       { text: 'GitHub', link: 'https://github.com/' }
     ],
     sidebar: [
       {
-        text: '项目导读',
+        text: '关于本站',
         items: [
-          { text: '项目介绍', link: '/' },
-          { text: '整体概览', link: '/guide/overview' },
-          { text: '快速开始', link: '/guide/getting-started' },
-          { text: '自己搭建教程', link: '/guide/build-your-own' }
+          { text: '项目介绍', link: '/about/' },
+          { text: '整体概览', link: '/about/overview' }
         ]
       },
       {
@@ -55,17 +53,14 @@ export default defineConfig({
         items: dailyItems
       },
       {
-        text: '内容建设',
+        text: '搭建同款网站',
         items: [
-          { text: '内容形态', link: '/chapter1/product-shape' },
-          { text: '新闻来源与简报规范', link: '/chapter1/news-sources' },
-          { text: '静态站点结构', link: '/chapter2/frontend-pwa' }
-        ]
-      },
-      {
-        text: '部署',
-        items: [
-          { text: 'GitHub Pages', link: '/deploy/github-pages' }
+          { text: '快速开始', link: '/build/getting-started' },
+          { text: '从零搭建', link: '/build/build-your-own' },
+          { text: '内容规划', link: '/build/content-shape' },
+          { text: '站点结构', link: '/build/static-structure' },
+          { text: '简报来源与规范', link: '/build/news-sources' },
+          { text: 'GitHub Pages 部署', link: '/build/github-pages' }
         ]
       }
     ],

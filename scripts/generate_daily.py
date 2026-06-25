@@ -32,7 +32,7 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SPEC_PATH = ROOT / "docs" / "chapter1" / "news-sources.md"
+SPEC_PATH = ROOT / "docs" / "build" / "news-sources.md"
 DAILY_DIR = ROOT / "docs" / "daily"
 
 RSS_SOURCES = [
@@ -333,8 +333,8 @@ def build_prompt(date: str, spec: str, context: dict[str, Any]) -> str:
 
         重要要求：
         - 只输出最终 Markdown 正文，不要解释过程，不要使用代码围栏包裹。
-        - 严格遵循“新闻来源与简报规范”中的角色、工作流、输出数量和格式。
-        - 标题必须使用：# AI简报 by@leftshift {date}
+        - 严格遵循“简报来源与规范”中的角色、工作流、输出数量和格式。
+        - 正文第一行必须是标题：# AI简报 by@leftshift {date}
         - 必须输出 3 个模块：🚀 AI技术新闻、📚 AI学术论文、💻 AI开源项目。
         - 内容总量尽量固定为 10 条 AI 技术新闻、5 篇 AI 学术论文、5 个 AI 开源项目。
         - 不要编造链接；只能使用采集结果中的原始链接。
@@ -342,7 +342,7 @@ def build_prompt(date: str, spec: str, context: dict[str, Any]) -> str:
         - 排除广告、营销、无关公司消息和非 AI 内容。
         - 每个条目都要有独有 Emoji、标题、链接、概况。
 
-        ## 新闻来源与简报规范
+        ## 简报来源与规范
 
         {spec}
 

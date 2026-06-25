@@ -9,10 +9,12 @@
 它做三件事：
 
 1. 从 RSS、arXiv、GitHub 采集 AI 相关候选内容。
-2. 读取 `docs/chapter1/news-sources.md` 中定义的编辑规范。
+2. 读取 `docs/build/news-sources.md` 中定义的编辑规范。
 3. 调用本地 Codex CLI 分析采集结果，并输出 Markdown 到 `docs/daily/YYYY-MM-DD.md`。
 
 生成后的文件会被 VitePress 当作普通 Markdown 页面渲染。项目的 VitePress 配置会自动扫描 `docs/daily` 目录，因此新增文件后不需要手动改侧边栏。
+
+每篇文章结尾会由 VitePress 主题统一展示微信公众号二维码和关注提示，不需要在每篇简报里重复粘贴同一段 HTML。
 
 ## 整体流程
 
@@ -26,7 +28,7 @@ generate_daily.py 采集并清洗数据
         ↓
 组织为统一 JSON 上下文
         ↓
-读取 docs/chapter1/news-sources.md 作为编辑规范
+读取 docs/build/news-sources.md 作为编辑规范
         ↓
 把“规范 + JSON 上下文”交给本地 Codex
         ↓
@@ -325,7 +327,7 @@ topic:generative-ai stars:>50 pushed:>=最近 N 天
 | `GitHub` | GitHub Search API | 开源项目候选。 |
 | `errors` | 脚本内部 | 部分来源失败时的错误信息。 |
 
-这些字段名保持了 `docs/chapter1/news-sources.md` 里的规范表达，方便 Codex 按既定格式理解输入。
+这些字段名保持了 `docs/build/news-sources.md` 里的规范表达，方便 Codex 按既定格式理解输入。
 
 ## Codex 调用方式
 
@@ -350,7 +352,7 @@ codex exec --sandbox read-only --output-last-message 临时文件 -
 
 1. 本次日期。
 2. 固定生成要求，例如标题必须是 `# AI简报 by@leftshift YYYY-MM-DD`。
-3. `docs/chapter1/news-sources.md` 的完整规范。
+3. `docs/build/news-sources.md` 的完整规范。
 4. 脚本采集到的 JSON 上下文。
 
 提示词要求 Codex：
@@ -404,7 +406,7 @@ codex exec --sandbox read-only --output-last-message 临时文件 -
 如果要增加或删除 RSS 来源，需要同时关注两处：
 
 1. `scripts/generate_daily.py` 中的 `RSS_SOURCES`。
-2. `docs/chapter1/news-sources.md` 中的来源说明。
+2. `docs/build/news-sources.md` 中的来源说明。
 
 示例：
 
@@ -567,7 +569,7 @@ npm run docs:dev
 
 ## 维护建议
 
-- 修改输出格式时，优先改 `docs/chapter1/news-sources.md`，再确认 `build_prompt()` 中的强约束是否也要同步。
+- 修改输出格式时，优先改 `docs/build/news-sources.md`，再确认 `build_prompt()` 中的强约束是否也要同步。
 - 修改采集来源时，同步更新本文档和站点里的来源说明。
 - 调试采集质量时，优先使用 `--collect-only --context-out`，不要一上来反复调用 Codex。
 - 提交生成内容前，人工检查一遍标题、链接和摘要，尤其是 GitHub 项目描述是否准确。
