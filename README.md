@@ -1,6 +1,6 @@
-# AI 前沿科技 Daily
+﻿# AI 前沿科技简报
 
-这是一个基于 VitePress + GitHub Pages 的 AI 前沿科技内容分享站，适合承载项目说明、实现教程、Daily 内容归档和部署手册。
+这是一个基于 VitePress + GitHub Pages 的 AI 前沿科技内容分享站，适合承载项目说明、实现教程、AI简报归档和部署手册。
 
 当前项目只保留静态文档能力：内容写在 `docs` 目录下的 Markdown 文件中，通过 GitHub Pages 发布，不包含后端接口、数据库或第三方工作流接入。
 
@@ -45,3 +45,6 @@ python scripts/generate_daily.py --collect-only --context-out tmp/daily-context.
 
 Settings -> Pages
 Source: GitHub Actions
+
+
+

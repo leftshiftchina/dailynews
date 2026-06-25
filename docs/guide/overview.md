@@ -1,4 +1,4 @@
-# 整体概览
+﻿# 整体概览
 
 ## 项目目标
 
@@ -60,7 +60,7 @@ dailynews/
 
 VitePress 适合这个场景的原因很直接：
 
-- Markdown 写作成本低，适合持续维护日报、教程和项目说明。
+- Markdown 写作成本低，适合持续维护简报、教程和项目说明。
 - 自动生成侧边栏、页内目录、搜索、上一页和下一页。
 - 构建结果是静态文件，适合部署到 GitHub Pages。
 - 后续可以继续添加自定义 Vue 组件，承载更丰富的示例。
@@ -88,3 +88,4 @@ https://<owner>.github.io/dailynews/guide/overview
 ```text
 https://<owner>.github.io/dailynews/daily/2026-06-23#ai-技术新闻
 ```
+

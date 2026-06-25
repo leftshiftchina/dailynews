@@ -1,4 +1,4 @@
-# 自己搭建教程
+﻿# 自己搭建教程
 
 这篇教程说明如何从零搭建一个类似的 AI 前沿科技内容分享站。最终效果是：用 Markdown 写内容，用 VitePress 生成静态页面，用 GitHub Pages 免费托管。
 
@@ -15,8 +15,8 @@
 新建目录并初始化 npm：
 
 ```bash
-mkdir ai-frontier-daily
-cd ai-frontier-daily
+mkdir ai-frontier-brief
+cd ai-frontier-brief
 npm init -y
 ```
 
@@ -66,18 +66,18 @@ docs/
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: 'AI 前沿科技 Daily',
+  title: 'AI 前沿科技简报',
   description: 'AI 前沿科技内容分享站',
   base: '/你的仓库名/',
   lang: 'zh-CN',
   cleanUrls: true,
   lastUpdated: true,
   themeConfig: {
-    siteTitle: 'AI Frontier Daily',
+    siteTitle: 'AI Frontier Brief',
     nav: [
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/overview' },
-      { text: 'Daily', link: '/daily/2026-06-23' },
+      { text: 'AI简报', link: '/daily/2026-06-23' },
       { text: '部署', link: '/deploy/github-pages' }
     ],
     sidebar: [
@@ -89,7 +89,7 @@ export default defineConfig({
         ]
       },
       {
-        text: 'AI 日报',
+        text: 'AI简报',
         items: [
           { text: '2026-06-23', link: '/daily/2026-06-23' }
         ]
@@ -108,7 +108,7 @@ export default defineConfig({
 })
 ```
 
-如果你使用的是用户站点，例如 `https://<owner>.github.io/`，可以把 `base` 改成 `/`。如果是仓库站点，例如 `https://<owner>.github.io/ai-frontier-daily/`，就配置为 `/ai-frontier-daily/`。
+如果你使用的是用户站点，例如 `https://<owner>.github.io/`，可以把 `base` 改成 `/`。如果是仓库站点，例如 `https://<owner>.github.io/ai-frontier-brief/`，就配置为 `/ai-frontier-brief/`。
 
 ## 编写首页
 
@@ -119,7 +119,7 @@ export default defineConfig({
 layout: home
 
 hero:
-  name: AI 前沿科技 Daily
+  name: AI 前沿科技简报
   text: 面向 AI 前沿科技的内容分享站
   tagline: 用 VitePress + GitHub Pages 承载项目说明、实现教程、内容归档和部署手册。
   actions:
@@ -133,7 +133,7 @@ features:
   - title: 静态部署
     details: 构建产物可以托管到 GitHub Pages。
   - title: 内容归档
-    details: Daily 内容按日期沉淀，便于检索和回看。
+    details: AI简报按日期沉淀，便于检索和回看。
 ---
 
 ## 项目介绍
@@ -141,12 +141,12 @@ features:
 这里写你的站点定位、内容范围和更新计划。
 ```
 
-## 新增 Daily
+## 新增 AI简报
 
 创建 `docs/daily/2026-06-23.md`：
 
 ```md
-# 2026-06-23 AI 前沿科技 Daily
+# 2026-06-23 AI 前沿科技简报
 
 ## 今日要点
 
@@ -176,7 +176,7 @@ npm run docs:build
 npm run docs:preview
 ```
 
-确认首页、侧边栏、搜索和 Daily 页面都能正常访问后，再推送到 GitHub。
+确认首页、侧边栏、搜索和 AI简报页面都能正常访问后，再推送到 GitHub。
 
 ## 发布到 GitHub Pages
 
@@ -234,3 +234,11 @@ jobs:
 ```
 
 然后在 GitHub 仓库的 `Settings -> Pages` 中，把 Source 设置为 `GitHub Actions`。
+
+
+
+
+
+
+
+

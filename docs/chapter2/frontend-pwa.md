@@ -1,11 +1,11 @@
-# 静态站点结构
+﻿# 静态站点结构
 
 ## 技术选型
 
 当前站点只保留静态内容发布能力，技术栈非常轻：
 
 - VitePress：把 Markdown 构建成静态站点。
-- Markdown：编写项目说明、教程和 Daily 内容。
+- Markdown：编写项目说明、教程和 AI简报。
 - GitHub Actions：自动构建。
 - GitHub Pages：托管构建产物。
 
@@ -77,3 +77,4 @@ docs/public/
 ```
 
 例如 `docs/public/favicon.svg` 会在站点中以 `/favicon.svg` 访问。部署到 GitHub Pages 仓库站点时，VitePress 会结合 `base` 自动处理最终路径。
+

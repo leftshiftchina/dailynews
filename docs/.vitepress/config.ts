@@ -1,7 +1,25 @@
-import { defineConfig } from 'vitepress'
+﻿import { defineConfig } from 'vitepress'
+import fs from 'node:fs'
+import path from 'node:path'
+
+const dailyDir = path.resolve(__dirname, '../daily')
+const dailyItems = fs
+  .readdirSync(dailyDir)
+  .filter((file) => /^\d{4}-\d{2}-\d{2}\.md$/.test(file))
+  .sort()
+  .reverse()
+  .map((file) => {
+    const date = file.replace(/\.md$/, '')
+    return {
+      text: date,
+      link: `/daily/${date}`
+    }
+  })
+
+const latestDailyLink = dailyItems[0]?.link ?? '/daily/2026-06-23'
 
 export default defineConfig({
-  title: 'AI 前沿科技 Daily',
+  title: 'AI 前沿科技简报',
   description: '基于 VitePress 与 GitHub Pages 的 AI 前沿科技内容分享站',
   base: '/dailynews/',
   lang: 'zh-CN',
@@ -14,11 +32,11 @@ export default defineConfig({
   ],
   themeConfig: {
     logo: '/favicon.svg',
-    siteTitle: 'AI Frontier Daily',
+    siteTitle: 'AI Frontier Brief',
     nav: [
       { text: '首页', link: '/' },
       { text: '指南', link: '/guide/overview' },
-      { text: 'Daily', link: '/daily/2026-06-23' },
+      { text: 'AI简报', link: latestDailyLink },
       { text: '部署', link: '/deploy/github-pages' },
       { text: 'GitHub', link: 'https://github.com/' }
     ],
@@ -33,16 +51,14 @@ export default defineConfig({
         ]
       },
       {
-        text: 'AI 日报',
-        items: [
-          { text: '2026-06-23', link: '/daily/2026-06-23' }
-        ]
+        text: 'AI简报',
+        items: dailyItems
       },
       {
         text: '内容建设',
         items: [
           { text: '内容形态', link: '/chapter1/product-shape' },
-          { text: '新闻来源与日报规范', link: '/chapter1/news-sources' },
+          { text: '新闻来源与简报规范', link: '/chapter1/news-sources' },
           { text: '静态站点结构', link: '/chapter2/frontend-pwa' }
         ]
       },
@@ -99,3 +115,4 @@ export default defineConfig({
     }
   }
 })
+

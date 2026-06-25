@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Collect AI news inputs, ask local Codex to write the brief, and save it to docs/daily/YYYY-MM-DD.md.
 
@@ -333,7 +333,7 @@ def build_prompt(date: str, spec: str, context: dict[str, Any]) -> str:
 
         重要要求：
         - 只输出最终 Markdown 正文，不要解释过程，不要使用代码围栏包裹。
-        - 严格遵循“新闻来源与日报规范”中的角色、工作流、输出数量和格式。
+        - 严格遵循“新闻来源与简报规范”中的角色、工作流、输出数量和格式。
         - 标题必须使用：# AI简报 by@leftshift {date}
         - 必须输出 3 个模块：🚀 AI技术新闻、📚 AI学术论文、💻 AI开源项目。
         - 内容总量尽量固定为 10 条 AI 技术新闻、5 篇 AI 学术论文、5 个 AI 开源项目。
@@ -342,7 +342,7 @@ def build_prompt(date: str, spec: str, context: dict[str, Any]) -> str:
         - 排除广告、营销、无关公司消息和非 AI 内容。
         - 每个条目都要有独有 Emoji、标题、链接、概况。
 
-        ## 新闻来源与日报规范
+        ## 新闻来源与简报规范
 
         {spec}
 
@@ -452,7 +452,7 @@ def run_codex(prompt: str, output_path: Path, codex_bin: str, model: str | None,
 
     content = clean_markdown(content)
     if not content.startswith("# "):
-        raise RuntimeError("Codex 输出不像 Markdown 日报：缺少一级标题。")
+        raise RuntimeError("Codex 输出不像 Markdown 简报：缺少一级标题。")
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(content.rstrip() + "\n", encoding="utf-8")
@@ -473,10 +473,10 @@ def write_context(path: Path, context: dict[str, Any]) -> None:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="采集 AI 信息源并调用本地 Codex 生成 Daily Markdown。")
-    parser.add_argument("--date", default=dt.date.today().isoformat(), help="日报日期，格式 YYYY-MM-DD。")
+    parser = argparse.ArgumentParser(description="采集 AI 信息源并调用本地 Codex 生成 AI简报 Markdown。")
+    parser.add_argument("--date", default=dt.date.today().isoformat(), help="简报日期，格式 YYYY-MM-DD。")
     parser.add_argument("--output", help="输出文件路径，默认 docs/daily/YYYY-MM-DD.md。")
-    parser.add_argument("--overwrite", action="store_true", help="允许覆盖已存在的日报文件。")
+    parser.add_argument("--overwrite", action="store_true", help="允许覆盖已存在的简报文件。")
     parser.add_argument("--collect-only", action="store_true", help="只采集上下文，不调用 Codex。")
     parser.add_argument("--context-out", help="保存采集上下文 JSON，便于调试。")
     parser.add_argument("--codex-bin", default=os.environ.get("CODEX_BIN", "codex"), help="Codex CLI 路径。")
@@ -548,7 +548,7 @@ def main() -> int:
     print("调用本地 Codex 生成简报...")
     prompt = build_prompt(date, spec, context)
     run_codex(prompt, output_path, args.codex_bin, args.model, args.codex_timeout)
-    print(f"日报已写入：{output_path}")
+    print(f"简报已写入：{output_path}")
 
     if context["errors"]:
         print("采集过程中存在部分失败：")
@@ -560,3 +560,5 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+
