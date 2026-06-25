@@ -72,6 +72,7 @@ LeftShift 倡导四个设计原则：
 | 快速开始 | 本地安装、预览和构建 | [进入](/guide/getting-started) |
 | 自己搭建教程 | 初始化项目、配置导航、发布站点 | [进入](/guide/build-your-own) |
 | 内容形态 | Daily 页面、专题页、教程页如何组织 | [进入](/chapter1/product-shape) |
+| 新闻来源与日报规范 | RSS 来源、编辑角色、筛选流程和输出模板 | [进入](/chapter1/news-sources) |
 | 静态站点结构 | VitePress 目录、Markdown 路由和资源管理 | [进入](/chapter2/frontend-pwa) |
 | AI 日报示例 | 2026-06-23 内容归档 | [进入](/daily/2026-06-23) |
 | GitHub Pages | 自动构建和发布配置 | [进入](/deploy/github-pages) |

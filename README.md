@@ -18,6 +18,23 @@ npm run docs:build
 npm run docs:preview
 ```
 
+## 生成 AI 简报
+
+脚本会采集 `docs/chapter1/news-sources.md` 中定义的信息源，调用本地 Codex 分析并生成 Markdown 到 `docs/daily/YYYY-MM-DD.md`。
+
+```bash
+python scripts/generate_daily.py
+```
+
+常用参数：
+
+```bash
+python scripts/generate_daily.py --date 2026-06-25 --overwrite
+python scripts/generate_daily.py --collect-only --context-out tmp/daily-context.json
+```
+
+如需提升 GitHub API 额度，可设置 `GITHUB_TOKEN` 环境变量。
+
 ## GitHub Pages
 
 默认使用 `.github/workflows/deploy.yml` 构建并发布 `docs/.vitepress/dist`。

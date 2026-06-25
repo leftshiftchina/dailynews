@@ -42,6 +42,7 @@ export default defineConfig({
         text: '内容建设',
         items: [
           { text: '内容形态', link: '/chapter1/product-shape' },
+          { text: '新闻来源与日报规范', link: '/chapter1/news-sources' },
           { text: '静态站点结构', link: '/chapter2/frontend-pwa' }
         ]
       },
