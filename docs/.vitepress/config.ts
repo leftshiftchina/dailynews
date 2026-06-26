@@ -32,7 +32,9 @@ export default defineConfig({
     ['meta', { name: 'apple-mobile-web-app-title', content: 'AI简报' }],
     ['link', { rel: 'manifest', href: '/dailynews/manifest.webmanifest' }],
     ['link', { rel: 'icon', href: '/dailynews/favicon.svg', type: 'image/svg+xml' }],
-    ['link', { rel: 'shortcut icon', href: '/dailynews/favicon.svg', type: 'image/svg+xml' }]
+    ['link', { rel: 'icon', href: '/dailynews/icon-192.png', type: 'image/png', sizes: '192x192' }],
+    ['link', { rel: 'shortcut icon', href: '/dailynews/favicon.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'apple-touch-icon', href: '/dailynews/apple-touch-icon.png', sizes: '180x180' }]
   ],
   themeConfig: {
     logo: '/favicon.svg',

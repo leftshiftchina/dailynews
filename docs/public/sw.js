@@ -1,8 +1,12 @@
-const CACHE_NAME = 'dailynews-pwa-v1'
+const CACHE_NAME = 'dailynews-pwa-v2'
 const BASE_PATH = '/dailynews/'
 const CORE_ASSETS = [
   BASE_PATH,
   `${BASE_PATH}favicon.svg`,
+  `${BASE_PATH}icon-192.png`,
+  `${BASE_PATH}icon-512.png`,
+  `${BASE_PATH}maskable-icon-512.png`,
+  `${BASE_PATH}apple-touch-icon.png`,
   `${BASE_PATH}manifest.webmanifest`
 ]
 

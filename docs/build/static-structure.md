@@ -31,10 +31,17 @@ docs/
     static-structure.md
     github-pages.md
   daily/
+    2026-06-26.md
     2026-06-25.md
     2026-06-23.md
   public/
+    apple-touch-icon.png
     favicon.svg
+    icon-192.png
+    icon-512.png
+    manifest.webmanifest
+    maskable-icon-512.png
+    sw.js
   .vitepress/
     config.ts
     theme/
