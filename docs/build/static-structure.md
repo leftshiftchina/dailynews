@@ -27,6 +27,7 @@ docs/
     build-your-own.md
     content-shape.md
     news-sources.md
+    pwa.md
     static-structure.md
     github-pages.md
   daily/
@@ -63,6 +64,7 @@ VitePress 会根据 Markdown 文件路径生成页面路由：
 | `docs/about/overview.md` | `/about/overview` |
 | `docs/build/content-shape.md` | `/build/content-shape` |
 | `docs/build/news-sources.md` | `/build/news-sources` |
+| `docs/build/pwa.md` | `/build/pwa` |
 | `docs/daily/2026-06-25.md` | `/daily/2026-06-25` |
 | `docs/build/github-pages.md` | `/build/github-pages` |
 

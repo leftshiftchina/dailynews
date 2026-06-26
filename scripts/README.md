@@ -22,7 +22,7 @@
 外部信息源
   ├─ RSS：36氪、虎嗅、IT之家、InfoQ
   ├─ arXiv：AI / NLP / ML / CV / 统计机器学习方向论文
-  └─ GitHub：近期活跃的 AI / LLM / Agent / Generative AI 项目
+  └─ GitHub：近期新出现的 AI / LLM / Agent / Generative AI 项目
         ↓
 generate_daily.py 采集并清洗数据
         ↓
@@ -214,7 +214,7 @@ codex exec --model gpt-5 ...
 | `--feed-limit` | `20` | 每个 RSS 源最多读取多少条。 |
 | `--arxiv-limit` | `20` | 最多读取多少篇 arXiv 论文。 |
 | `--github-limit` | `20` | 最多读取多少个 GitHub 项目。 |
-| `--github-days` | `14` | GitHub 项目的近期活跃窗口，单位天。 |
+| `--github-days` | `14` | GitHub 新项目 created 时间窗口，单位天。 |
 
 ## 信息源说明
 
@@ -270,18 +270,20 @@ cat:cs.AI OR cat:cs.CL OR cat:cs.LG OR cat:cs.CV OR cat:stat.ML
 
 ### GitHub 项目
 
-脚本通过 GitHub Search API 检索近期活跃项目，当前查询包括：
+脚本通过 GitHub Search API 检索近期新建项目，当前查询包括：
 
 ```text
-topic:artificial-intelligence stars:>100 pushed:>=最近 N 天
-topic:llm stars:>50 pushed:>=最近 N 天
-topic:ai-agent stars:>20 pushed:>=最近 N 天
-topic:generative-ai stars:>50 pushed:>=最近 N 天
+topic:artificial-intelligence created:>=最近 N 天 stars:>0
+topic:llm created:>=最近 N 天 stars:>0
+topic:ai-agent created:>=最近 N 天 stars:>0
+topic:generative-ai created:>=最近 N 天 stars:>0
+AI agent created:>=最近 N 天 stars:>0
+LLM created:>=最近 N 天 stars:>0
 ```
 
 其中 `最近 N 天` 由 `--github-days` 控制，默认是 14 天。
 
-项目会按 stars 和 forks 排序，保留最靠前的候选。
+项目会按更新时间、stars 和 forks 综合排序，但选择目标是“近期新项目”，不是全网长期高 star 项目。
 
 每个项目会整理成：
 
@@ -505,7 +507,7 @@ python scripts/generate_daily.py --date 2026-06-25 --overwrite
 - GitHub API 匿名额度用完。
 - 当前网络无法访问 GitHub。
 - `--github-days` 时间窗口太短。
-- 查询 topic 下近期活跃项目较少。
+- 查询 topic 下近期新建项目较少。
 
 处理方式：
 

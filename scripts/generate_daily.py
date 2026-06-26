@@ -32,6 +32,11 @@ from pathlib import Path
 from typing import Any
 
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 ROOT = Path(__file__).resolve().parents[1]
 SPEC_PATH = ROOT / "docs" / "build" / "news-sources.md"
 DAILY_DIR = ROOT / "docs" / "daily"
@@ -109,6 +114,7 @@ class GitHubItem:
     language: str = ""
     stars: int = 0
     forks: int = 0
+    created_at: str = ""
     updated_at: str = ""
 
 
@@ -231,6 +237,36 @@ def is_ai_related(item: FeedItem) -> bool:
     return any(keyword.lower() in haystack for keyword in AI_KEYWORDS)
 
 
+def is_github_ai_related(item: GitHubItem) -> bool:
+    haystack = f"{item.title} {item.description}".lower()
+    phrase_keywords = [
+        "ai agent",
+        "agentic",
+        "artificial intelligence",
+        "generative ai",
+        "large language model",
+        "machine learning",
+        "openai",
+        "anthropic",
+        "claude",
+        "chatgpt",
+        "deepseek",
+        "gemini",
+        "copilot",
+        "transformer",
+        "diffusion",
+        "大模型",
+        "智能体",
+        "机器学习",
+        "人工智能",
+    ]
+    token_keywords = {"ai", "aigc", "agent", "agents", "llm", "mcp", "ml", "rag"}
+    if any(keyword in haystack for keyword in phrase_keywords):
+        return True
+    tokens = set(re.findall(r"[a-z0-9]+", haystack))
+    return any(keyword in tokens for keyword in token_keywords)
+
+
 def collect_rss(limit_per_source: int) -> tuple[list[FeedItem], list[str]]:
     all_items: list[FeedItem] = []
     errors: list[str] = []
@@ -306,10 +342,14 @@ def collect_arxiv(max_results: int) -> tuple[list[ArxivItem], list[str]]:
 def collect_github(max_results: int, days: int) -> tuple[list[GitHubItem], list[str]]:
     since = (dt.date.today() - dt.timedelta(days=days)).isoformat()
     queries = [
-        f"topic:artificial-intelligence stars:>100 pushed:>={since}",
-        f"topic:llm stars:>50 pushed:>={since}",
-        f"topic:ai-agent stars:>20 pushed:>={since}",
-        f"topic:generative-ai stars:>50 pushed:>={since}",
+        f"topic:artificial-intelligence created:>={since} stars:>0",
+        f"topic:llm created:>={since} stars:>0",
+        f"topic:ai-agent created:>={since} stars:>0",
+        f"topic:generative-ai created:>={since} stars:>0",
+        f"AI agent created:>={since} stars:>0",
+        f"LLM created:>={since} stars:>0",
+        f"MCP created:>={since} stars:>0",
+        f"RAG created:>={since} stars:>0",
     ]
     token = os.environ.get("GITHUB_TOKEN")
     errors: list[str] = []
@@ -319,7 +359,7 @@ def collect_github(max_results: int, days: int) -> tuple[list[GitHubItem], list[
         params = urllib.parse.urlencode(
             {
                 "q": query,
-                "sort": "stars",
+                "sort": "updated",
                 "order": "desc",
                 "per_page": str(min(30, max_results)),
             }
@@ -336,17 +376,25 @@ def collect_github(max_results: int, days: int) -> tuple[list[GitHubItem], list[
             link = repo.get("html_url", "")
             if not name or not link or name in repos:
                 continue
-            repos[name] = GitHubItem(
+            item = GitHubItem(
                 title=name,
                 link=link,
                 description=truncate(repo.get("description") or "", 300),
                 language=repo.get("language") or "",
                 stars=int(repo.get("stargazers_count") or 0),
                 forks=int(repo.get("forks_count") or 0),
+                created_at=repo.get("created_at") or "",
                 updated_at=repo.get("updated_at") or "",
             )
+            if not is_github_ai_related(item):
+                continue
+            repos[name] = item
 
-    items = sorted(repos.values(), key=lambda repo: (repo.stars, repo.forks), reverse=True)
+    items = sorted(
+        repos.values(),
+        key=lambda repo: (repo.created_at, repo.updated_at, repo.stars, repo.forks),
+        reverse=True,
+    )
     return items[:max_results], errors
 
 
@@ -364,6 +412,7 @@ def build_prompt(date: str, spec: str, context: dict[str, Any]) -> str:
         - 正文第一行必须是标题：# AI简报 by@leftshift {date}
         - 必须输出 3 个模块：🚀 AI技术新闻、📚 AI学术论文、💻 AI开源项目。
         - 内容总量尽量固定为 10 条 AI 技术新闻、5 篇 AI 学术论文、5 个 AI 开源项目。
+        - AI 开源项目必须优先选择近期新建或新出现的项目，不要因为 star 多就选择长期知名老项目。
         - 不要编造链接；只能使用采集结果中的原始链接。
         - 优先选择 AI、LLM、AIGC、大模型、智能体、机器人、算力、AI 编程相关内容。
         - 排除广告、营销、无关公司消息和非 AI 内容。
@@ -512,7 +561,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--feed-limit", type=int, default=20, help="每个 RSS 源最多读取条数。")
     parser.add_argument("--arxiv-limit", type=int, default=20, help="最多读取 arXiv 论文数。")
     parser.add_argument("--github-limit", type=int, default=20, help="最多读取 GitHub 项目数。")
-    parser.add_argument("--github-days", type=int, default=14, help="GitHub 项目 pushed 时间窗口，单位天。")
+    parser.add_argument("--github-days", type=int, default=14, help="GitHub 新项目 created 时间窗口，单位天。")
     return parser.parse_args()
 
 

@@ -26,7 +26,11 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   head: [
-    ['meta', { name: 'theme-color', content: '#12a67f' }],
+    ['meta', { name: 'theme-color', content: '#ffd42a' }],
+    ['meta', { name: 'mobile-web-app-capable', content: 'yes' }],
+    ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+    ['meta', { name: 'apple-mobile-web-app-title', content: 'AI简报' }],
+    ['link', { rel: 'manifest', href: '/dailynews/manifest.webmanifest' }],
     ['link', { rel: 'icon', href: '/dailynews/favicon.svg', type: 'image/svg+xml' }],
     ['link', { rel: 'shortcut icon', href: '/dailynews/favicon.svg', type: 'image/svg+xml' }]
   ],
@@ -36,7 +40,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: 'AI简报', link: latestDailyLink },
-      { text: '搭建同款网站', link: '/build/build-your-own' },
+      { text: '搭建同款网站', link: '/build/install-guide' },
       { text: '部署', link: '/build/github-pages' },
       { text: 'GitHub', link: 'https://github.com/' }
     ],
@@ -56,9 +60,10 @@ export default defineConfig({
         text: '搭建同款网站',
         items: [
           { text: '快速开始', link: '/build/getting-started' },
-          { text: '从零搭建', link: '/build/build-your-own' },
+          { text: '从零搭建', link: '/build/install-guide' },
           { text: '内容规划', link: '/build/content-shape' },
           { text: '站点结构', link: '/build/static-structure' },
+          { text: 'PWA 配置', link: '/build/pwa' },
           { text: '简报来源与规范', link: '/build/news-sources' },
           { text: 'GitHub Pages 部署', link: '/build/github-pages' }
         ]
@@ -116,4 +121,3 @@ export default defineConfig({
     }
   }
 })
-

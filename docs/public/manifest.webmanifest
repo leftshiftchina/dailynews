@@ -1,0 +1,20 @@
+{
+  "name": "AI 前沿科技简报",
+  "short_name": "AI简报",
+  "description": "基于 VitePress 与 GitHub Pages 的 AI 前沿科技内容分享站",
+  "start_url": "/dailynews/",
+  "scope": "/dailynews/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#ffd42a",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "/dailynews/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
