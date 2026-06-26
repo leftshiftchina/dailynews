@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 Collect AI news inputs, ask local Codex to write the brief, and save it to docs/daily/YYYY-MM-DD.md.
 
@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import html
+import http.client
 import json
 import os
 import re
@@ -71,6 +72,16 @@ AI_KEYWORDS = [
     "算力",
 ]
 
+FETCH_ERRORS = (
+    urllib.error.URLError,
+    TimeoutError,
+    http.client.HTTPException,
+    OSError,
+)
+FEED_ERRORS = FETCH_ERRORS + (ET.ParseError, UnicodeError)
+ARXIV_ERRORS = FETCH_ERRORS + (ET.ParseError, UnicodeError)
+GITHUB_ERRORS = FETCH_ERRORS + (UnicodeError, json.JSONDecodeError)
+
 
 @dataclass
 class FeedItem:
@@ -101,7 +112,7 @@ class GitHubItem:
     updated_at: str = ""
 
 
-def fetch_text(url: str, timeout: int = 30, token: str | None = None) -> str:
+def fetch_text(url: str, timeout: int = 30, token: str | None = None, retries: int = 1) -> str:
     headers = {
         "User-Agent": "dailynews-ai-brief/1.0 (+https://github.com/)",
         "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml, application/json, text/html;q=0.8, */*;q=0.5",
@@ -110,13 +121,29 @@ def fetch_text(url: str, timeout: int = 30, token: str | None = None) -> str:
         headers["Authorization"] = f"Bearer {token}"
 
     request = urllib.request.Request(url, headers=headers)
-    try:
-        return open_url_text(request, timeout)
-    except urllib.error.URLError as exc:
-        if "CERTIFICATE_VERIFY_FAILED" not in str(exc):
-            raise
-        insecure_context = ssl._create_unverified_context()
-        return open_url_text(request, timeout, context=insecure_context)
+    last_error: BaseException | None = None
+
+    for attempt in range(retries + 1):
+        try:
+            return open_url_text(request, timeout)
+        except urllib.error.URLError as exc:
+            if "CERTIFICATE_VERIFY_FAILED" in str(exc):
+                try:
+                    insecure_context = ssl._create_unverified_context()
+                    return open_url_text(request, timeout, context=insecure_context)
+                except FETCH_ERRORS as retry_exc:
+                    last_error = retry_exc
+            else:
+                last_error = exc
+        except FETCH_ERRORS as exc:
+            last_error = exc
+
+        if attempt < retries:
+            continue
+
+    if last_error:
+        raise last_error
+    raise RuntimeError(f"请求失败：{url}")
 
 
 def open_url_text(
@@ -214,7 +241,7 @@ def collect_rss(limit_per_source: int) -> tuple[list[FeedItem], list[str]]:
             items = parse_feed(source, xml_text, limit_per_source)
             ai_items = [item for item in items if is_ai_related(item)]
             all_items.extend(ai_items or items[: max(3, limit_per_source // 3)])
-        except (urllib.error.URLError, TimeoutError, ET.ParseError, UnicodeError) as exc:
+        except FEED_ERRORS as exc:
             errors.append(f"{source} ({url}) 抓取失败：{exc}")
 
     return all_items, errors
@@ -236,7 +263,7 @@ def collect_arxiv(max_results: int) -> tuple[list[ArxivItem], list[str]]:
     try:
         xml_text = fetch_text(url, timeout=45)
         root = ET.fromstring(xml_text)
-    except (urllib.error.URLError, TimeoutError, ET.ParseError, UnicodeError) as exc:
+    except ARXIV_ERRORS as exc:
         return [], [f"arXiv 抓取失败：{exc}"]
 
     entries = [child for child in root if local_name(child.tag) == "entry"]
@@ -300,7 +327,7 @@ def collect_github(max_results: int, days: int) -> tuple[list[GitHubItem], list[
         url = f"https://api.github.com/search/repositories?{params}"
         try:
             payload = json.loads(fetch_text(url, timeout=45, token=token))
-        except (urllib.error.URLError, TimeoutError, UnicodeError, json.JSONDecodeError) as exc:
+        except GITHUB_ERRORS as exc:
             errors.append(f"GitHub 查询失败：{query}；{exc}")
             continue
 
