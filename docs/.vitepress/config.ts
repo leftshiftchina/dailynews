@@ -60,7 +60,7 @@ export default defineConfig({
       },
       {
         text: 'AI简报',
-        items: dailyItems
+        items: [{ text: '2026 年 11 月 AI 大事件', link: '/monthly/2026-11' }, ...dailyItems]
       },
       {
         text: '搭建同款网站',

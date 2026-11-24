@@ -9,6 +9,9 @@ hero:
     src: /favicon.svg
     alt: AI Frontier Brief
   actions:
+    - theme: alt
+      text: 11 月 AI 大事件
+      link: /monthly/2026-11
     - theme: brand
       text: 阅读 AI简报
       link: /daily/2026-06-25
