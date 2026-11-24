@@ -55,6 +55,10 @@ export default defineConfig({
         ]
       },
       {
+        text: '实用教程',
+        items: [{ text: '美区 Apple 账户注册指南', link: '/guides/us-apple-account' }]
+      },
+      {
         text: 'AI简报',
         items: dailyItems
       },
