@@ -48,6 +48,7 @@ AI 前沿科技简报面向两类读者：一类是想快速阅读 AI 前沿内�
 | --- | --- | --- |
 | 关于本站 | 项目目标、内容范围和阅读方式 | [进入](/about/overview) |
 | AI简报 | 最新 AI 前沿科技简报归档 | [进入](/daily/2026-06-25) |
+| 11 月专题 | 本月值得读的论文和值得试的开源项目 | [AI 学术论文精选](/monthly/2026-11-papers) · [AI 开源项目精选](/monthly/2026-11-open-source) |
 | 实用教程 | 注册美区 Apple 账户，下载 ChatGPT | [阅读指南](/guides/us-apple-account) |
 | 快速开始 | 本地安装、预览和构建 | [进入](/build/getting-started) |
 | 从零搭建 | 初始化项目、配置导航、发布站点 | [进入](/build/build-your-own) |
